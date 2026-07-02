@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio - 3D Carousel</title>
+    <style>
+        /* Reset podstawowych marginesów */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Tło w postaci poziomego pasa */
+        .background-container {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-white-space {
+            height: 15vh;
+            min-height: 100px;
+            background-color: #ffffff;
+        }
+
+        .tan-band {
+            height: 250px;
+            background-color: #d1c4b2;
+        }
+
+        /* Pojemnik na treść */
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -280px;
+            z-index: 10;
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-bottom: 100px;
+        }
+
+        /* Zdjęcie profilowe */
+        .profile-pic {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            margin-bottom: 50px;
+            background-color: #f0f0f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Typografia */
+        h2 {
+            margin: 0;
+            font-weight: 300;
+            font-size: 32px;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+        }
+
+        h1 {
+            margin: 5px 0 25px 0;
+            font-weight: 800;
+            font-size: 40px;
+            letter-spacing: 2px;
+            color: #000000;
+        }
+
+        p {
+            text-align: center;
+            color: #555555;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 650px;
+            margin-bottom: 50px;
+        }
+
+        /* Przycisk Link */
+        .read-more {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 4px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #7a7a7a;
+            border-bottom-color: #7a7a7a;
+        }
+
+        /* --- STYLIZACJA KARUZELI 3D --- */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 750px; /* Zwiększona wysokość, dopasowana do zdjęć */
+            margin-top: 60px; /* Odstęp od przycisku / tekstu, zapobiega nachodzeniu */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 600px; /* Zaktualizowana szerokość z polecenia */
+            height: 750px; /* Zaktualizowana wysokość z polecenia */
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out, opacity 0.6s ease-in-out, z-index 0.6s;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background-color: #333; /* Tło w razie błędu ładowania */
+        }
+
+        /* Zdjęcie po lewej (Zmniejszone, rozmyte) */
+        .carousel-item.prev {
+            transform: translateX(-40%) scale(0.8);
+            filter: blur(5px) grayscale(100%);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* Zdjęcie środkowe (Główne, ostre, na wierzchu) */
+        .carousel-item.active {
+            transform: translateX(0) scale(1);
+            filter: blur(0) grayscale(100%); 
+            opacity: 1;
+            z-index: 3;
+        }
+
+        /* Zdjęcie po prawej (Zmniejszone, rozmyte) */
+        .carousel-item.next {
+            transform: translateX(40%) scale(0.8);
+            filter: blur(5px) grayscale(100%);
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* Nawigacja kropek */
+        .carousel-dots {
+            margin-top: 40px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #d1c4b2;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active, .dot:hover {
+            background-color: #1a1a1a;
+        }
+
+        /* Responsywność dla mniejszych ekranów (proporcjonalne zmniejszenie dla widoków mobilnych) */
+        @media (max-width: 768px) {
+            .carousel-item {
+                width: 320px;
+                height: 400px;
+            }
+            .carousel-wrapper {
+                height: 400px; 
+            }
+            .carousel-item.prev { transform: translateX(-35%) scale(0.8); }
+            .carousel-item.next { transform: translateX(35%) scale(0.8); }
+            
+            .profile-pic { width: 250px; height: 250px; }
+            .content-container { margin-top: -200px; }
+            h2 { font-size: 24px; }
+            h1 { font-size: 30px; }
+            .tan-band { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-container">
+        <div class="top-white-space"></div>
+        <div class="tan-band"></div>
+    </div>
+    
+    <div class="content-container">
+        <img src="photos/MAIN.png" alt="Zdjęcie profilowe" class="profile-pic">
+        
+        <h2>MIKUL</h2>
+        <h1>3D PORTFOLIO</h1>
+        <h3>KONTAKT</h3>
+        <p>Discord: mycool2137</p>
+        
+        <p>Zajmuję się tworzeniem i konwertowaniem modeli 3D oraz tekstur do GTA San Andreas i nie tylko. Od eleganckich ubrań po zupełnie nowe pedy, sprawdź portfolio, i nadaj swojej grze unikalny charakter.</p>
+        
+        <a href="prace.html" class="read-more">See everything clearly</a>
+
+        <div class="carousel-wrapper">
+            <img class="carousel-item" src="photos/Preview1.gif" alt="Praca 1">
+            <img class="carousel-item" src="photos/Preview2.gif" alt="Praca 2">
+            <img class="carousel-item" src="photos/Preview3.gif" alt="Praca 3">
+        </div>
+        
+        <div class="carousel-dots">
+            <span class="dot" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 1; 
+        let timer;
+
+        function updateCarousel() {
+            let prevIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+            let nextIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+
+            items.forEach((item, index) => {
+                item.className = 'carousel-item';
+                dots[index].classList.remove('active');
+            });
+
+            items[prevIndex].classList.add('prev');
+            items[currentIndex].classList.add('active');
+            items[nextIndex].classList.add('next');
+
+            dots[currentIndex].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            clearInterval(timer);
+            updateCarousel();
+            startAutoPlay();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        }
+
+        function startAutoPlay() {
+            timer = setInterval(nextSlide, 3500); 
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (currentIndex !== index) {
+                    goToSlide(index);
+                }
+            });
+        });
+
+        updateCarousel();
+        startAutoPlay();
+    </script>
+
+</body>
+</html>

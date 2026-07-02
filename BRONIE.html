@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Prac</title>
+    <style>
+        /* Reset podstawowy */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            
+            /* TŁO GŁÓWNE STRONY (Tworzy zewnętrzną ramkę jak na drugim zdjęciu) */
+            background: url('https://assets.lostgamerstatic.com/00dda99b-d58a-49f3-8ece-16abce6e1582.jpg');
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* Wewnętrzny kontener na treść (Beżowy gradient) */
+        .content-frame {
+            background: linear-gradient(135deg, #fcfaf5 0%, #e3d5c1 100%);
+            width: 100%;
+            max-width: 2200px;
+            padding: 60px 40px;
+            box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.5);
+           
+        }
+
+        /* Tytuł sekcji */
+        h1 {
+            text-align: center;
+            color: #000000; /* Fioletowo-niebieski kolor ze zdjęcia 1 */
+            font-size: 42px;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            font-family: 'Helvetica Neue'
+        }
+
+        /* --- SIATKA PRAC (GRID) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 elementy w rzędzie */
+            gap: 40px;
+            position: relative;
+        }
+
+        /* Pojedyncza karta z pracą */
+        .card {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 0 25px 0; /* Brak paddingu na górze, by zdjęcie dotykało krawędzi */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Zdjęcie wewnątrz karty */
+        .card-img {
+            width: 100%;
+            height: auto; /* Usuwamy sztywne 220px */
+            aspect-ratio: 4 / 5; /* Proporcje 600x750 to dokładnie 4:5 */
+            object-fit: cover; /* Wypełnia ramkę bez zniekształceń */
+            object-position: top center; /* Ważne: pilnuje, aby głowa postaci była zawsze widoczna! */
+            background-color: #333333;
+            margin-bottom: 20px;
+        }
+
+        /* Tytuł i kategoria pracy */
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: #0b1354; /* Ciemny granat ze zdjęcia 1 */
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            color: #4a4a4a;
+            font-weight: 400;
+        }
+
+        /* --- ZAAWANSOWANE ANIMACJE HOVER --- */
+        
+        /* 1. Gdy najeżdżamy na CAŁĄ SIATKĘ, lekko rozmywamy wszystkie karty */
+        .grid-container:hover .card {
+            filter: blur(0px) grayscale(30%);
+            opacity: 0.6;
+            transform: scale(0.98); /* Lekkie odsunięcie reszty do tyłu */
+        }
+
+        /* 2. Ale wyostrzamy i animujemy TYLKO TĘ KARTĘ, nad którą jest kursor */
+        .grid-container .card:hover {
+            filter: blur(0) grayscale(0%);
+            opacity: 1;
+            transform: scale(1.15) rotate(15deg); /* Płynne powiększenie i obrót o 15 stopni */
+            z-index: 10; /* Wyrzucenie na wierzch */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* Mocniejszy cień dla efektu 3D */
+        }
+
+        /* Responsywność dla urządzeń mobilnych */
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 w rzędzie na tabletach */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content-frame {
+                padding: 30px 20px;
+            }
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 w rzędzie na telefonach */
+            }
+        }
+        .read-more {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 4px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #7a7a7a;
+            border-bottom-color: #7a7a7a;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="content-frame">
+        <a href="prace.html" class="read-more">Powrót</a>
+        <h1>BRONIE SAN ANDREAS</h1>
+
+        <div class="grid-container">
+            
+            <div class="card">
+                <img src="photos/BRONIE/1.gif" alt="Praca 1" class="card-img">
+                <h3>Siekiera</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/2.gif" alt="Praca 1" class="card-img">
+                <h3>Pałka</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/3.gif" alt="Praca 1" class="card-img">
+                <h3>Makeshift</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/4.gif" alt="Praca 1" class="card-img">
+                <h3>Łom</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/5.gif" alt="Praca 1" class="card-img">
+                <h3>Draco</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/6.gif" alt="Praca 1" class="card-img">
+                <h3>FN-FAL</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/7.gif" alt="Praca 1" class="card-img">
+                <h3>Glock</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/8.gif" alt="Praca 1" class="card-img">
+                <h3>Młotek</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/9.gif" alt="Praca 1" class="card-img">
+                <h3>Strzelba</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/10.gif" alt="Praca 1" class="card-img">
+                <h3>Rewolwer</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/11.gif" alt="Praca 1" class="card-img">
+                <h3>Pałka z nożami</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/12.gif" alt="Praca 1" class="card-img">
+                <h3>Rura</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/13.gif" alt="Praca 1" class="card-img">
+                <h3>M4</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/14.gif" alt="Praca 1" class="card-img">
+                <h3>M16</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/15.gif" alt="Praca 1" class="card-img">
+                <h3>Nóż</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/16.gif" alt="Praca 1" class="card-img">
+                <h3>Saints row classic</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/17.gif" alt="Praca 1" class="card-img">
+                <h3>Pistolet</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/18.gif" alt="Praca 1" class="card-img">
+                <h3>Pistolet</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/19.gif" alt="Praca 1" class="card-img">
+                <h3>Wyrzutnia Rakiet</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/20.gif" alt="Praca 1" class="card-img">
+                <h3>AK-103</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/21.gif" alt="Praca 1" class="card-img">
+                <h3>Sniper</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+            <div class="card">
+                <img src="photos/BRONIE/22.gif" alt="Praca 1" class="card-img">
+                <h3>Strzelba2</h3>
+                <p>BRON SAN ANDREAS</p>
+            </div>
+
+            
+
+            
+
+        </div>
+    </div>
+
+</body>
+</html>

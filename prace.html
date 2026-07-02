@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Prace</title>
+    <style>
+        /* Reset i ustawienia podstawowe */
+        body {
+            margin: 0;
+            padding: 20px; /* Odstęp zewnętrzny od krawędzi przeglądarki */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: url('https://assets.lostgamerstatic.com/00dda99b-d58a-49f3-8ece-16abce6e1582.jpg');
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
+
+        /* Ramka okalająca całą stronę */
+        .page-frame {
+            
+            width: 100%;
+            max-width: 1000px;
+            min-height: calc(100vh - 60px);
+            box-sizing: border-box;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #fcfaf5 0%, #e3d5c1 100%);
+            box-shadow: 0 0 10px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tytuł */
+        h1 {
+            font-size: 42px;
+            letter-spacing: 4px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-top: 0;
+            margin-bottom: 60px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Kontener na siatkę z przyciskami (Layout z Twojego zdjęcia) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+            gap: 60px 100px; /* Odstępy: 60px w pionie, 100px w poziomie */
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Pojedynczy element (Zdjęcie + Przycisk) */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Okrągłe miejsce na zdjęcie */
+        .circle-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            background-color: #d1c4b2; /* Kolor zastępczy, dopóki nie wgrasz zdjęcia */
+            box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.5);
+            
+        }
+
+        /* Przycisk przypominający ramkę ze szkicu */
+        .work-btn {
+            
+            background: transparent;
+            padding: 15px 0;
+            width: 100%;
+            max-width: 250px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        /* Efekt po najechaniu na przycisk */
+        .work-btn:hover {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        /* Responsywność - przejście na 1 kolumnę na telefonach */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 kolumna */
+                gap: 50px;
+            }
+            .page-frame {
+                padding: 40px 15px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+        }
+            .read-more {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 4px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #7a7a7a;
+            border-bottom-color: #7a7a7a;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="page-frame">
+        <h1>MOJE PRACE</h1>
+          <a href="index.html" class="read-more">Powrót</a>
+        <div class="grid-container">
+            
+            <div class="grid-item">
+                <img src="photos/Preview2.gif" alt="Skiny" class="circle-img">
+                <a href="skiny.html" class="work-btn">SKINY</a>
+            </div>
+
+            <div class="grid-item">
+                <img src="photos/Preview1.gif" alt="Bronie" class="circle-img">
+                <a href="BRONIE.html" class="work-btn">BRONIE</a>
+            </div>
+            <div class="grid-item">
+                <img src="photos/Preview3.gif" alt="Mapy" class="circle-img">
+                <a href="budynki.html" class="work-btn">MAPY</a>
+            </div>
+
+            <div class="grid-item">
+                <img src="photos/rendery.png" alt="Rendery" class="circle-img">
+                <a href="Rendery.html" class="work-btn">RENDERY</a>
+            </div>
+
+            <div class="grid-item">
+                <img src="photos/grafiki.png" alt="Grafiki" class="circle-img">
+                <a href="grafiki.html" class="work-btn">GRAFIKI</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

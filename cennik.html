@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik</title>
+    <style>
+        /* Reset podstawowy */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #fcfaf5 0%, #e3d5c1 100%);
+            min-height: 100vh;
+            color: #1a1a1a;
+        }
+
+        /* --- GÓRNA SEKCJA (HERO BANNER) --- */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 60vh; 
+            min-height: 400px;
+            background-image: url('https://i.pinimg.com/564x/6f/f9/3f/6ff93ff42f0d81443a02cad4886720d1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            border-bottom: 4px solid #1a1a1a; 
+        }
+
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; 
+            color: #ffffff;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 1px;
+            color: #fcfaf5;
+        }
+
+        /* --- DOLNA SEKCJA Z KARTAMI --- */
+        .features-section {
+            width: 100%;
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px; 
+        }
+
+        /* Styl pojedynczej karty */
+        .card {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* --- ZDJĘCIE KWADRATOWE W KARCIE --- */
+        .card-square-img {
+            width: 100%; /* Zajmuje szerokość kontenera... */
+            max-height: 490px;
+            object-fit: cover; /* Wypełnia kwadrat, ucinając nadmiar (nie spłaszcza zdjęcia) */
+            margin-bottom: 25px;
+            background-color: #e3d5c1; 
+        }
+
+        .card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        /* Animacja Hover (Obrót o 10 stopni w prawo) */
+        .card:hover {
+            transform: scale(1.05) rotate(10deg); 
+            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .features-section {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+                margin: 50px auto;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+        .p1 {
+            font-size: 40px;
+        }
+        .read-more {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 4px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+        
+        .read-more:hover {
+            color: #7a7a7a;
+            border-bottom-color: #7a7a7a;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner">
+        <div class="hero-content">
+            <a href="index.html" class="read-more">Powrót</a>
+            <h1>CENNIK</h1>
+            <p>Zależny od poziomu skomplikowania modelu</p>
+        </div>
+    </div>
+
+    <div class="features-section">
+        
+        <div class="card">
+            <img src="photos/SKINY/5.png" alt="Obraz 1" class="card-square-img">
+            <h3>Prosty skin</h3>
+            <p>Szybkie i efektowne modyfikacje bazujące na istniejących zasobach. W skład tej usługi wchodzą podmianki elementów (headswap, legswap, shoeswap) oraz poprawki wizualne. To idealne rozwiązanie, gdy zależy Ci na odświeżeniu wyglądu postaci bez  budowania  modelu od nowa.</p>
+            <div class='p1'>15-20PLN</div>
+        </div>
+
+        <div class="card">
+            <img src="photos/SKINY/10.png" alt="Obraz 2" class="card-square-img">
+            <h3>Zaawansowane skiny</h3>
+            <p>Kompleksowe projekty tworzone od podstaw. Obejmują autorskie elementy ubioru oraz unikalne ręcznie robione tekstury. Każdy taki model posiada szkielet  tworzony ręcznie, co gwarantuje naturalne animacje postaci w silniku gry</p>
+            <div class='p1'>40-50PLN</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
